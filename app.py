@@ -6,12 +6,16 @@ from datetime import datetime, timezone
 
 import bcrypt
 import jwt
+from flask_cors import CORS
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 
 load_dotenv()
 
 APP = Flask(__name__)
+
+#enable access from origins other than our local auth service 
+CORS(APP)
 
 DB_PATH = os.getenv("DB_PATH", "auth.db")
 JWT_SECRET = os.getenv("JWT_SECRET", "dev-secret-change-me")
